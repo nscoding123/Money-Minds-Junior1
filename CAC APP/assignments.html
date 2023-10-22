@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Minds Junior</title>
+     <!-- Cool Google Fonts -->
+     <link rel="preconnect" href="https://fonts.gstatic.com">
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+     <!-- Our stylesheet -->
+    <link rel="stylesheet" href="mainpage.css">
+</head>
+<body>
+    <header>
+        <h1>Money Minds Junior Quiz</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Quiz Questions</h2>
+            <div id="quiz-container">
+                <div id="question-text"></div>
+                <form id="quiz-form">
+                    <input type="radio" id="optionA" name="answer" value="A">
+                    <label for="optionA" id="labelA"></label><br>
+                    <input type="radio" id="optionB" name="answer" value="B">
+                    <label for="optionB" id="labelB"></label><br>
+                    <input type="radio" id="optionC" name="answer" value="C">
+                    <label for="optionC" id="labelC"></label><br>
+                </form>
+                <div id="button-container">
+                    <button id="next-button">Next</button>
+                </div>
+            </div>
+            <div id="result-container"></div>
+        </section>
+    </main>
+
+    <script>
+        const questions = [
+            {
+                question: "Where can you save your money?",
+                options: {
+                    A: "In your school bag",
+                    B: "Under your mattress",
+                    C: "In a bank account"
+                },
+                correct: "C"
+
+            },
+            {
+                question: "What is money?",
+                options: {
+                A: "Something we play with",
+                B: "A way to buy things",
+                C: "A type of food"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "Why is it important to save money?",
+                options: {
+                A: "So you can buy toys",
+                B: "To have money for emergencies",
+                C: "To show off to your friends"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What does 'budget' mean?",
+                options: {
+                A: "A type of fruit",
+                B: "A plan for spending and saving money",
+                C: "A movie ticket"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "How can you earn money as a kid?",
+                options: {
+                A: "Ask your parents for money",
+                B: "Do chores and earn an allowance",
+                C: "Wait for money to fall from the sky"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is the difference between 'needs' and 'wants'?",
+                options: {
+                A: "Needs are things you must have, and wants are things you'd like to have",
+                B: "Needs and wants mean the same thing",
+                C: "Needs are for adults, and wants are for kids"
+                },
+                correct: "A"
+
+            },
+            {
+                question: "What is a savings goal?",
+                options: {
+                A: "A game you play with friends",
+                B: "A target amount of money you want to save for something specific",
+                C: "A special kind of candy"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is interest?",
+                options: {
+                A: "Something that makes you feel excited",
+                B: "Money that you have saved",
+                C: "Money that the bank pays you for keeping your money there"
+                },
+                correct: "C"
+
+            },
+            {
+                question: "Why is it important to share and give to others, even if you have little money?",
+                options: {
+                A: "Because it's fun",
+                B: "To make friends",
+                C: "To help those in need and build a kinder world"
+                },
+                correct: "C"
+
+            },
+            {
+                question: "When you put your money in a piggy bank or a jar, what are you doing?",
+                options: {
+                A: "Saving it",
+                B: "Spending it",
+                C: "Hiding it from your parents"
+                },
+                correct: "A"
+
+            },
+            {
+                question: "What's the golden rule of money?",
+                options: {
+                A: "Spend, spend, spend!",
+                B: "Save, share, and spend wisely",
+                C: "Money grows on trees"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What should you do before buying something expensive?",
+                options: {
+                A: "Ask your parents to buy it for you",
+                B: "Think about whether you really need it and if you can afford it",
+                C: "A type of food"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is money?",
+                options: {
+                A: "Something we play with",
+                B: "A way to buy things",
+                C: "Buy it right away without thinking"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What does 'income' mean?",
+                options: {
+                A: "Money you spend",
+                B: "Money you earn",
+                C: "Money you borrow"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is a credit card?", 
+                options: {
+                A: "A card to play games on",
+                B: "A way to borrow money to be paid back later",
+                C: "A card that shows your address"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is the difference between a checking account and a savings account?",
+                options: {
+                A: "Checkings accounts are used for daily spending, while savings accounts are for savings",
+                B: "Checking accounts earn more interest",
+                C: "There is no differnce they are the same"
+                },
+                correct: "A"
+
+            },
+            {
+                question: "Why is it important to create and follow a budget?",
+                options: {
+                A: "To impress your friends with your financial skills",
+                B: "To make sure you have enough money to buy the latest gadgets",
+                C: "To track your spending and ensure you can achieve your financial goals"
+                },
+                correct: "C"
+
+            },
+            {
+                question: "What is the significance of 'compounding interest' in savings and investments?",
+                options: {
+                A: "It's the interest earned on both the initial principal and the accumulated interest",
+                B: "It's a fancy term for losing money in the stock market.",
+                C: "It's the extra money you earn by playing video games"
+                },
+                correct: "A"
+
+            },
+            {
+                question: "What is the difference between stocks and bonds in investment terms?",
+                options: {
+                A: "Stocks are for rich people, and bonds are for everyone else",
+                B: "Stocks represent ownership in a company, while bonds are loans made to a company or government",
+                C: "Stocks and bonds are both just funny names for pieces of paper"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is the difference between a debit card and a credit card?",
+                options: {
+                A: "Debit cards are used for online shopping, while credit cards are for in-store purchases",
+                B: "Debit cards deduct money directly from your bank account, while credit cards allow you to borrow money to be paid back later",
+                C: "There's no difference; they are the same thing"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is the 'emergency fund,' and why is it essential?",
+                options: {
+                A: "Money set aside for buying expensive items",
+                B: "Money saved for unexpected expenses or emergencies",
+                C: "A fund used for vacations"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is the importance of investing, and how does it differ from saving money in a bank account?",
+                options: {
+                A: "Investing is for rich people, and it's riskier than saving in a bank account",
+                B: "Investing involves putting money into assets with the potential for long-term growth, while saving is typically considered low-risk with lower returns",
+                C: "Investing is just another term for saving money"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What are some potential advantages of investing in stocks or mutual funds compared to saving money in a regular savings account?",
+                options: {
+                A: "Stocks and mutual funds are risk-free",
+                B: "The potential for higher returns on your investment over the long term",
+                C: "Stocks are too complicated for kids to understand"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "Why is it important to read the terms and conditions of financial agreements, like loans and credit cards?",
+                options: {
+                A: "Because it's a fun read",
+                B: "To find hidden loopholes to your advantage",
+                C: "To fully understand the terms, fees, and interest rates, and to avoid surprises and hidden costs."
+                },
+                correct: "C"
+
+            },
+            {
+                question: "Why is it important to start investing at a young age?",
+                options: {
+                A: "Investing is only for the wealthy",
+                B: "It allows your money to grow over time through compound interest",
+                C: "You should never invest"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is the concept of 'living below your means,' and why is it important for financial success?",
+                options: {
+                A: "Spending all your money on things you enjoy",
+                B: "Spending exactly what you earn",
+                C: "Spending less than you earn to save and invest for the future."
+                },
+                correct: "C"
+
+            },
+            {
+                question: "Why is it important to be cautious when using credit cards?",
+                options: {
+                A: "Credit cards are always a bad idea",
+                B: "If you don't pay off your balance in full, you can accumulate debt and pay high interest rates",
+                C: "Credit cards are free money"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is the term for money you owe to someone else, such as a friend or a financial institution?",
+                options: {
+                A: "Savings",
+                B: "Debt",
+                C: "Income"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "Why is it essential to compare prices and shop around before making a big purchase?",
+                options: {
+                A: "To waste time",
+                B: "To find the cheapest option and make your money go further",
+                C: "To show off your knowledge about different products"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What are some potential risks of investing in the stock market?",
+                options: {
+                A: "Guaranteed profits",
+                B: "Losing money if the market goes down",
+                C: "Winning the lottery"
+                },
+                correct: "B"
+
+            },
+            {
+                question: "What is a stock, and how does it relate to owning a part of a company?",
+                options: {
+                A: "A stock represents ownership in a company, and owning stocks means you have a share in that company",
+                B: "Losing money if the market goes down",
+                C: "Stocks are like souvenirs from companies"
+                },
+                correct: "B"
+
+            },
+        ];
+
+
+        const numQuestions = 10;
+        let currentQuestion = 0;
+        let score = 0;
+        let shuffledQuestions = [];
+
+        function shuffleQuestions() {
+            shuffledQuestions = questions.sort(() => Math.random() - 0.5).slice(0, numQuestions);
+        }
+
+        const questionText = document.getElementById('question-text');
+        const labelA = document.getElementById('labelA');
+        const labelB = document.getElementById('labelB');
+        const labelC = document.getElementById('labelC');
+        const nextButton = document.getElementById('next-button');
+        const quizForm = document.getElementById('quiz-form');
+        const resultContainer = document.getElementById('result-container');
+
+        function loadQuestion() {
+            const current = shuffledQuestions[currentQuestion];
+            questionText.textContent = current.question;
+            labelA.textContent = current.options.A;
+            labelB.textContent = current.options.B;
+            labelC.textContent = current.options.C;
+        }
+
+        function checkAnswer() {
+            const selectedAnswer = quizForm.querySelector('input[name="answer"]:checked');
+            if (selectedAnswer && selectedAnswer.value === shuffledQuestions[currentQuestion].correct) {
+                score++;
+            }
+        }
+
+        nextButton.addEventListener('click', () => {
+            checkAnswer();
+            currentQuestion++;
+            if (currentQuestion < numQuestions) {
+                loadQuestion();
+            } else {
+                resultContainer.textContent = `Your Score: ${score}/${numQuestions}`;
+                if (score >= 8) {
+                    resultContainer.textContent += ' - Congratulations, you passed!';
+                } else {
+                    resultContainer.textContent += ' - You failed. Please try again.';
+                }
+                nextButton.style.display = 'none';
+            }
+        });
+
+        shuffleQuestions();
+        loadQuestion();
+    </script>
+</body>
+</html>
